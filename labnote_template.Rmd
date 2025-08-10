@@ -1,0 +1,67 @@
+---
+title: "研究課題名（ここに入力）"
+author: "作成者名（ここに入力）"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  pdf_document:
+    latex_engine: lualatex
+    toc: false
+    number_sections: false
+    keep_tex: true
+header-includes: |
+  \usepackage{luatexja}
+  \usepackage{luatexja-fontspec}
+  \setmainfont{IPAexMincho}
+  \usepackage{geometry}
+  \geometry{a4paper, left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+  \usepackage{fancyhdr}
+  \setlength{\headheight}{14pt}
+  \fancyhf{}
+  \lhead{実験記録}
+  \rhead{Report Generated: \texttt{`r params$output_timestamp`}}
+  \cfoot{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \usepackage{booktabs}
+  \usepackage{tabularx}
+  \pagestyle{fancy}
+  \fancypagestyle{plain}{%
+    \fancyhf{}
+    \lhead{実験記録}
+    \rhead{Report Generated: \texttt{`r params$output_timestamp`}}
+    \cfoot{\thepage}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+  }
+params:
+  subject_id: "001"
+  experiment_order: "未設定"
+  start_time: "2025-01-01 12:00"
+  end_time: "2025-01-01 13:00"
+  lab_number: "Lab-0"
+  hct_order: "未設定"
+  output_timestamp: !expr format(Sys.time(), "%Y-%m-%d %H:%M", tz = "Asia/Tokyo")
+  experimenter_name: "（Shiny 入力が入ります）"
+---
+
+\vspace{2em}
+\fontsize{14}{16}\selectfont 実験記録
+\vspace{1em}
+
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.25}%
+\begin{tabularx}{\textwidth}{@{}p{40mm} X@{}}
+\toprule
+項目名 & 記録内容 \\ \midrule
+被験者 ID      & `r params$subject_id` \\
+実験順序       & `r params$experiment_order` \\
+HCT 順序       & `r params$hct_order` \\
+開始日時 (JST) & `r params$start_time` \\
+終了日時 (JST) & `r params$end_time` \\
+実験室番号     & `r params$lab_number` \\
+実験者名       & `r params$experimenter_name` \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\vspace{0.5em}
